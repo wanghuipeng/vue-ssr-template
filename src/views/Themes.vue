@@ -1,19 +1,12 @@
+
+
+
 <template>
   <div class="themes">
-    <ol class="breadcrumb">
-      <li class="active">Themes</li>
-    </ol>
-    <div class="media" v-for="item in themes">
-      <div class="media-left">
-        <a href="javascript:;" @click="themeView(item.id)">
-          <img class="media-object" width="52" :src="item.thumbnail" :alt="item.name">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">{{item.name}}</h4>
-        <p>{{item.description}}</p>
-      </div>
-    </div>
+    <p>{{userProfile}}</p>
+    <ul>
+      <li v-for="(item,index) in  userProfile && userProfile.functions">{{item.label}}</li>
+    </ul>
   </div>
 </template>
 <script>
@@ -29,7 +22,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      themes: 'getThemes'
+      userProfile: 'getUserProfile'
     })
   },
   methods: {
@@ -38,8 +31,8 @@ export default {
     }
   },
   asyncData({ store }) {
-    return store.dispatch('getThemes')
+    return store.dispatch('getUserProfile')
   }
 }
-
 </script>
+

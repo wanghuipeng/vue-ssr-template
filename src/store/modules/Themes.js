@@ -1,32 +1,33 @@
 import api from 'src/api'
 
 const state = {
-  themes: []
+    userProfile: {}
 }
 
 const getters = {
-  getThemes: state => state.themes
+    getUserProfile: state => state.userProfile
 }
 
 const mutations = {
-  THEMES_LIST: (state, themes) => {
-    state.themes = themes
-  }
+    USER_PROFILE: (state, userProfile) => {
+        state.userProfile = userProfile
+    }
 }
 
 const actions = {
-  getThemes ({ state, commit }) {
-    return api.get('/themes').then((response) => {
-      commit('THEMES_LIST', response.others)
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
+    getUserProfile({ state, commit }) {
+        return api.get('/code/dict.js').then((response) => {
+            console.log(111, response)
+            commit('USER_PROFILE', response)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
 }
 
 export default {
-  state,
-  getters,
-  mutations,
-  actions
+    state,
+    getters,
+    mutations,
+    actions
 }
